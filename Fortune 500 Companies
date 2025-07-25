@@ -82,7 +82,17 @@ AND industry ='Technology'
 
 
 
+--Companies with  leaves longer than 10 weeks are considered "family friendly", 6 weeks "average" anytihng else "not considered"
 
+SELECT
+  company_name,
+  CASE
+    WHEN maternity_leave_weeks >= 10 THEN 'Family Friendly'
+    WHEN maternity_leave_weeks > 6 THEN 'Average'
+    ELSE 'Not Considered'
+  END AS leave_category
+FROM
+  fortune_companies;
 
 
 
