@@ -96,4 +96,14 @@ FROM
 
 
 
+ --What company in Healthcare has the most revenue and what is their revenue?
+  
+SELECT 
+company_name, MAX(revenue)
+FROM fortune_companies
+WHERE industry = 'Healthcare'
+;
+
+
+
 
