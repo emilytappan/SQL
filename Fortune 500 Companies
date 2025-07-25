@@ -104,6 +104,17 @@ FROM fortune_companies
 WHERE industry = 'Healthcare'
 ;
 
+--What industry has the least revenue and what is their sum revenue?
 
+SELECT
+    Industry,
+    SUM(Revenue) AS TotalRevenue
+FROM
+    fortune_companies
+GROUP BY
+    company_id
+ORDER BY
+    TotalRevenue ASC
+LIMIT 1;
 
 
