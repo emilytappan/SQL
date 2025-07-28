@@ -127,55 +127,31 @@ INSERT INTO hotels VALUES
 
 
 -- 1. [LEFT JOIN] -- List all the VIPs (last and first name) and any panels they are presenting at.
-4
 SELECT vips.last_name
-5
 , vips.first_name
-6
 , events.event_id
-7
 FROM vips
-8
 LEFT JOIN events
-9
 ON vips.event = events.event_id
-10
 ;
-11
 ​
 12
 --2 INNER JOIN  -List the VIP (last name only) and if they have RSVPed to the welcome party and dinner reservation
-13
 SELECT vips.member_id
-14
 ,vips.last_name
-15
 ,reservations.welcome_rsvp
-16
 ,reservations.dinner_rsvp
-17
-,
-18
-    CASE WHEN reservations.welcome_rsvp = 1 THEN 'YES'
-19
+, CASE
+WHEN reservations.welcome_rsvp = 1 THEN 'YES'
 WHEN reservations.welcome_rsvp = 0 THEN 'NO'
-20
 WHEN reservations.dinner_rsvp = 1 THEN 'YES'
-21
 WHEN reservations.dinner_rsvp = 0 THEN 'NO'
-22
 END AS Both_Confirmed
-23
 FROM vips
-24
     INNER JOIN reservations
-25
         ON vips.member_id = reservations.member_id
-26
         ;
-27
         
-28
 ​
 
 
