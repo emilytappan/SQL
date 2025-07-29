@@ -153,7 +153,27 @@ FROM vips
         ;
         
 ​
+3 --Multiple JOINs Retreive member last names, event name and hotel they are staying at
+SELECT v.last_name
+,e.event_name
+,h.hotel_name
+FROM events e
+INNER JOIN vips v ON v.event = e.event_id
+LEFT JOIN reservations r ON v.member_id = r.member_id
+LEFT JOIN hotels h ON r.hotel = h.hotel_id;
 
+
+--4 Self JOIN, List all pairs of VIPs staying at the same hotel
+SELECT DISTINCT v1.last_name AS vip_1
+, v2.last_name AS vip_2
+, h.hotel_name AS hotel_name
+FROM reservations r1
+JOIN reservations r2
+	ON r1.hotel = r2.hotel AND r1.member_id < r2.member_id
+    	JOIN vips v1 ON r1.member_id = v1.member_id
+        JOIN vips v2 ON r2.member_id = v2.member_id
+        JOIN hotels h ON r1.hotel = h.hotel_id
+        ;
 
 
 
