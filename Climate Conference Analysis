@@ -176,6 +176,21 @@ JOIN reservations r2
         ;
 
 
+--5 Get a list of all education affliated attendees who have not "welcome' rsvped.
+SELECT v.first_name, v.last_name, v.association
+FROM vips v
+JOIN reservations r ON v.member_id = r.member_id
+WHERE v.assoc_type = 'education' AND r.welcome_rsvp = 0;
+
+
+--6 Find VIPs staying at the same hotel order by hotel name
+SELECT v.first_name, v.last_name, h.hotel_name
+FROM vips v
+JOIN reservations r ON v.member_id = r.member_id
+JOIN hotels h ON r.hotel = h.hotel_id
+ORDER BY h.hotel_name ASC
+   ;
+
 
 
 
